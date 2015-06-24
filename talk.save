@@ -1,0 +1,16 @@
+//no error
+// message hook to handle WM_EXEC in GUI thread
+// User ID is: 33104238
+static LRESULT CALLBACK gui_exec_hook_GetMsgProc(int code, WPARAM wParam, LPARAM lParam )
+{
+  MSG* pmsg = reinterpret_cast<MSG*>(lParam);
+  if(pmsg->message == WM_EXEC)
+  {
+    sciter::sync::event* pe = reinterpret_cast<sciter::sync::event*>(pmsg->wParam);
+    gui_block* pf = reinterpret_cast<gui_block*>(pmsg->lParam);
+    (*pf)();      // execute the block in this GUI thread
+    pe->signal(); // signal that we've done with it
+                  // this will resume execution of worker thread.
+  }
+  return CallNextHookEx(0,code, wParam,lParam);
+}
