@@ -1,0 +1,5 @@
+The "Edit blocking tasks" link in Maniphest opens a dialog with two parts: a quicksearch with an "add" button for each search result, and a list of existing blockers with a "remove" button for each. This makes it relatively easy to add a new blocker (just type in the task ID or something unique from the title then click "add"). When there are many blockers (Wikimedia has some tracking tickets with several dozen blockers), removing one of those is much less comfortable as one must pick them from a huge list. (The browser's in-page text search works well but is unintuitive. It might be just me but I usually only realize I could have used it after spending a minute or two to read through and find the right task in the list, even though I use the interface a lot. I guess I am just not conditioned to think of items in a dropdown-ish interface as text.)
+
+Some ideas of how the UX could be improved with relatively little effort:
+* when the search expression matches a task which is already a blocker, show it in the upper half of the dialog with a "remove" button (current behavior is to show it with a gryed-out "add" button)
+* filter the lower half of the dialog as well
